@@ -51,6 +51,12 @@ Based on the functionalities implemented in the provided source code, here are t
 
 1. **File Operations:** 
 
+   - CreateDirectory: Users can create new empty directory.
+
+   - MoveToDirectory: Users can move to respective directory.
+
+   - MoveToHomeDirectory: Users can move to home directory.
+
    - Create: Users can create new empty files. 
 
    - Delete: Files can be deleted. 
@@ -59,9 +65,15 @@ Based on the functionalities implemented in the provided source code, here are t
 
    - Move: Files can be moved from one location to another. 
 
+   - Listfiles: List all the files present in the directory.
+
+   - PrintPresentDirectory: Prints the current directly being accessed.
+
   
 
 2. **Text Manipulation:** 
+
+   - Edit: Editing plain text or code files.
 
    - Convert to Uppercase: Text in a file can be converted to uppercase. 
 
@@ -86,6 +98,10 @@ Based on the functionalities implemented in the provided source code, here are t
    - Display Memory Usage: Users can view memory usage statistics. 
 
    - Display CPU Information: Users can see CPU information. 
+   
+   - Display Time: Display the current time of system.
+
+   - Display Date: Display the current date of system.
 
   
 
@@ -105,6 +121,8 @@ Based on the functionalities implemented in the provided source code, here are t
 
    - Clear Screen: Users can clear the terminal screen for better readability. 
 
+   - Exit Screen: Users can exit the terminal.
+
   
 
 6. **Games:** 
@@ -123,19 +141,64 @@ These features collectively offer users a versatile command-line utility for man
 
 To use the command-line utility provided by the source code, follow these instructions for each available command: 
 
+
+0. **Help command:**
+
+   - **Help:** Display all the command, use the command:
+
+     ```
+
+      help
+
+     ```
+
+     Example: `help`
+
   
 
 1. **File Operations:** 
+
+   - **CreateDirectory:** To create a new empty directory, use the command:
+
+     ```
+
+     createdir <directoryname>
+
+     ```
+
+     Example: ` createdir pi `
+
+  
+   - **MoveToDirectory:** To move to the respective directory, use the command:
+
+     ```
+
+     movetodir <directoryname>
+
+     ```
+
+     Example: ` movetodir pi`
+
+
+   - **MovetoHomeDirectory:** To move to the home directory, use the command:
+
+     ```
+
+     homedir
+
+     ```
+
+     Example: ` homedir `
 
    - **Create:** To create a new empty file, use the command: 
 
      ``` 
 
-     ./program_name create <filename> 
+     create <filename> 
 
      ``` 
 
-     Example: `./program_name create new_file.txt` 
+     Example: ` create new_file.txt` 
 
   
 
@@ -143,11 +206,11 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name delete <filename> 
+     delete <filename> 
 
      ``` 
 
-     Example: `./program_name delete old_file.txt` 
+     Example: `delete old_file.txt` 
 
   
 
@@ -155,11 +218,11 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name copy <source_filename> <destination_filename> 
+     copy <source_filename> <destination_filename> 
 
      ``` 
 
-     Example: `./program_name copy source.txt destination.txt` 
+     Example: `copy source.txt destination.txt` 
 
   
 
@@ -167,25 +230,56 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name move <source_filename> <destination_filename> 
+     move <source_filename> <destination_filename> 
 
      ``` 
 
-     Example: `./program_name move old_file.txt new_location/` 
+     Example: `move old_file.txt new_location/`
 
-  
+   - **Listfiles:** List all the files present in the directory, use the command:
+
+     ```
+    
+     listfiles
+    
+     ```
+
+     Example: `listfiles`
+
+
+   - **PrintPresentWorkingDirectory:** Prints the current directly being accessed, use the command:
+
+     ```
+
+      presentdir
+
+
+     ```
+
+     Example: `presentdir`
+
 
 2. **Text Manipulation:** 
+
+   - **Edit:** Editing plain text or code files, use the command:
+     ```
+
+     edit <filename>
+
+     ```
+
+     Example: `edit first.txt`
+
 
    - **Convert to Uppercase:** To convert text in a file to uppercase, use the command: 
 
      ``` 
 
-     ./program_name toupper <filename> 
+     toupper <filename> 
 
      ``` 
 
-     Example: `./program_name toupper input.txt` 
+     Example: `toupper input.txt` 
 
   
 
@@ -193,11 +287,11 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name tolower <filename> 
+     tolower <filename> 
 
      ``` 
 
-     Example: `./program_name tolower input.txt` 
+     Example: `tolower input.txt` 
 
   
 
@@ -205,11 +299,11 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name reverse <filename> 
+     reverse <filename> 
 
      ``` 
 
-     Example: `./program_name reverse text.txt` 
+     Example: `reverse text.txt` 
 
   
 
@@ -217,11 +311,11 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name rmspaces <filename> 
+     rmspaces <filename> 
 
      ``` 
 
-     Example: `./program_name rmspaces document.txt` 
+     Example: `rmspaces document.txt` 
 
   
 
@@ -229,11 +323,11 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name countwords <filename> 
+     countwords <filename> 
 
      ``` 
 
-     Example: `./program_name countwords essay.txt` 
+     Example: `countwords essay.txt` 
 
   
 
@@ -243,7 +337,7 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name systemstatus 
+     systemstatus 
 
      ``` 
 
@@ -253,7 +347,7 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name diskusage 
+     diskusage 
 
      ``` 
 
@@ -263,7 +357,7 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name networkinfo 
+     networkinfo 
 
      ``` 
 
@@ -273,7 +367,7 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name memoryusage 
+     memoryusage 
 
      ``` 
 
@@ -283,10 +377,25 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name cpuinfo 
+     cpuinfo 
 
-     ``` 
+     ```
 
+   - **Time:** Display the current time of system, use the command:
+    
+     ```
+
+     time 
+
+     ```
+
+   - **Date:** Display the current date of system, use the command:
+    
+     ```
+
+     date
+
+     ```
   
 
 4. **System Maintenance:** 
@@ -295,7 +404,7 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name reboot 
+     reboot 
 
      ``` 
 
@@ -305,7 +414,7 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name shutdown 
+     shutdown 
 
      ``` 
 
@@ -315,7 +424,7 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name update 
+     update 
 
      ``` 
 
@@ -325,7 +434,7 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name clean 
+     clean 
 
      ``` 
 
@@ -337,9 +446,16 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name clear 
+     clear 
 
      ``` 
+
+   - **Exit Screen:** To exit the screen, use the command:
+     ```
+
+     exit
+
+     ```
 
   
 
@@ -349,7 +465,7 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name guessnumber 
+     guessnumber 
 
      ``` 
 
@@ -359,13 +475,13 @@ To use the command-line utility provided by the source code, follow these instru
 
      ``` 
 
-     ./program_name rockpaperscissors 
+     rockpaperscissors 
 
      ``` 
 
   
 
-Replace `<filename>` and other placeholders with actual filenames or values as needed. These instructions cover how to use each command provided by the command-line utility. 
+Replace `<filename>` , `<directoryname>` and other placeholders with actual filenames or values as needed. These instructions cover how to use each command provided by the command-line utility. 
 
   
 
@@ -417,7 +533,7 @@ Once the program is compiled, you can run it from the command line using the fol
 
 ``` 
 
-./program_name <command> [filename] [additional_arguments] 
+./program_name 
 
 ``` 
 
@@ -437,7 +553,7 @@ Replace `program_name` with the name of the compiled executable file.
 
      ``` 
 
-     ./program_name create new_file.txt 
+     create new_file.txt 
 
      ``` 
 
@@ -449,7 +565,7 @@ Replace `program_name` with the name of the compiled executable file.
 
      ``` 
 
-     ./program_name toupper input.txt 
+     toupper input.txt 
 
      ``` 
 
@@ -461,7 +577,7 @@ Replace `program_name` with the name of the compiled executable file.
 
      ``` 
 
-     ./program_name systemstatus 
+     systemstatus 
 
      ``` 
 
@@ -473,7 +589,7 @@ Replace `program_name` with the name of the compiled executable file.
 
      ``` 
 
-     ./program_name guessnumber 
+     guessnumber 
 
      ``` 
 
@@ -515,4 +631,4 @@ Ensure that you have a C compiler installed on your system to compile the source
 
  
 
-For any questions, feedback, or inquiries about the project, please feel free to contact us at shashwathsh.is22@rvce.edu.in We welcome your input and look forward to hearing from you! 
+For any questions, feedback, or inquiries about the project, please feel free to contact us at mithrangowda.is23@rvce.edu.in We welcome your input and look forward to hearing from you! 
