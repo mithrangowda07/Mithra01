@@ -152,55 +152,126 @@ int main() {
                 printf("Usage: createdir <directoryname>\n");
                 continue;
             }
-            createDir(tokens[1]);
+            if (strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'createdir' command is used to create new directories.\n");
+				printf("2. Syntax: createdir [options] directory-name(s)\n");
+				printf("3. Use 'createdir -p' to create parent directories if they don't exist.\n");
+				printf("4. Example: 'createdir my_folder' creates a directory named 'my_folder'.\n");
+				printf("5. Use 'createdir -v' to display a message for each directory created.\n");
+        	}
+        	else createDir(tokens[1]);
         }
         else if (strcmp(command, "movetodir") == 0) {
             if (argc1 != 2) {
                 printf("Usage: movedir <directoryname>\n");
                 continue;
             }
-            moveDir(tokens[1]);
+            if (strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'movetodir' command is used to change the current directory.\n");
+				printf("2. Syntax: movetodir [directory-path]\n");
+				printf("3. To move to the parent directory, use 'movetodir ..'.\n");
+				printf("4. Use 'movetodir' without arguments to return to the home directory.\n");
+				printf("5. Use absolute paths (e.g., '/home/user') or relative paths (e.g., './folder') with 'movetodir'.\n");
+        	}
+            else moveDir(tokens[1]);
         }
         else if (strcmp(command, "homedir") == 0) {
-            if (argc1 != 1) {
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'homedir' command is used to change the current directory.\n");
+				printf("2. Syntax: homedir\n");
+				printf("3. To move to the parent directory, use 'homedir ..'.\n");
+				printf("4. Use 'homedir' without arguments to return to the home directory.\n");
+				printf("5. Use absolute paths (e.g., '/home/user') or relative paths (e.g., './folder') with 'homedir'.\n");
+        	}
+            else if (argc1 != 1) {
                 printf("Usage: homedir\n");
                 continue;
             }
-            changeToHomeDirectory();
+            else changeToHomeDirectory();
         }
         else if (strcmp(command, "create") == 0) {
             if (argc1 != 2) {
                 printf("Usage: create <filename>\n");
                 continue;
             }
-            createFile(tokens[1]);
+            if (strcmp(tokens[1], "help") == 0){
+        		printf("1. Use the 'create' command to create an empty file.\n");
+                printf("2. Syntax: create [file-name]\n");
+                printf("3. Example: 'create myfile.txt' creates an empty file named 'myfile.txt'.\n");
+                printf("4. If 'myfile.txt' already exists, 'create' updates its timestamp.\n");
+                printf("5. This method is simple and efficient for creating files.\n");
+        	}
+            else createFile(tokens[1]);
         } 
         else if (strcmp(command, "delete") == 0) {
             if (argc1 != 2) {
                 printf("Usage: delete <filename>\n");
                 continue;
             }
-            deleteFile(tokens[1]);
+            if (strcmp(tokens[1], "help") == 0){
+                printf("1. To delete a file, use the 'delete' command.\n");
+                printf("2. Syntax: delete [file-name]\n");
+                printf("3. Example: 'delete myfile.txt' deletes the file named 'myfile.txt'.\n");
+                printf("4. Use 'delete -i myfile.txt' to get a confirmation prompt before deleting.\n");
+                printf("5. Warning: Deleting a file with 'delete' is permanent and cannot be undone.\n");
+            }
+            else deleteFile(tokens[1]);
         } 
         else if (strcmp(command, "copy") == 0) {
-            if (argc1 != 3) {
+            if (strcmp(tokens[1], "help") == 0){
+                printf("1. The 'copy' command is used to copy files or directories.\n");
+                printf("2. Syntax: copy [options] source destination\n");
+                printf("3. Use 'copy -r' to copy directories recursively.\n");
+                printf("4. Example: 'copy file1.txt /destination/' copies file1.txt to the destination folder.\n");
+                printf("5. Use 'copy -i' to prompt before overwriting files.\n");
+            }
+            else if (argc1 != 3) {
                 printf("Usage: copy <source_filename> <destination_filename>\n");
                 continue;
             }
-            copyFile(tokens[1], tokens[2]);
+            else copyFile(tokens[1], tokens[2]);
         }
         else if (strcmp(command, "move") == 0) {
-            if (argc1 != 3) {
+            if (strcmp(tokens[1], "help") == 0){
+                printf("1. The 'move' command is used to move or rename files and directories.\n");
+                printf("2. Syntax: move [source] [destination]\n");
+                printf("3. Example to move: 'move myfile.txt /home/user/' moves 'myfile.txt' to '/home/user/'.\n");
+                printf("4. Example to rename: 'move old_name.txt new_name.txt' renames the file.\n");
+                printf("5. Warning: Be careful while overwriting files with the same name in the destination.\n");
+            }
+            else if (argc1 != 3) {
                 printf("Usage: move <source_filename> <destination_filename>\n");
                 continue;
             }
-            moveFile(tokens[1], tokens[2]);
+            else moveFile(tokens[1], tokens[2]);
         }
         else if (strcmp(command, "listfiles") == 0) {
-            listfiles();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'listfiles' command is used to list the contents of a directory.\n");
+                printf("2. Syntax: listfiles [options] [directory-path]\n");
+                printf("3. Use 'listfiles -l' to display detailed information about files and directories.\n");
+                printf("4. Use 'listfiles -a' to show hidden files.\n");
+                printf("5. Use 'listfiles /path/to/directory' to list files in a specific directory.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: listfiles\n");
+                continue;
+            }
+            else listfiles();
         }
         else if (strcmp(command, "presentdir") == 0) {
-            printworkingdirectory();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'presentdir' command displays the current working directory.\n");
+                printf("2. Syntax: presentdir\n");
+                printf("3. It shows the full absolute path of the current directory.\n");
+                printf("4. Use it to verify the directory before running commands like 'cd'.\n");
+                printf("5. It is useful in shell scripts to log the current directory.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: presentdir\n");
+                continue;
+            }
+            else printworkingdirectory();
         }
 
         // Text manipulation (operating on text files)
@@ -209,97 +280,356 @@ int main() {
                 printf("Usage: edit <filename>\n");
                 continue;
             }
-            gedit(tokens[1]);
+            if (strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'edit' command opens a text editor for creating or editing files.\n");
+                printf("2. Syntax: edit [file-name]\n");
+                printf("3. Example: 'edit myfile.txt' opens or creates a file named 'myfile.txt'.\n");
+                printf("4. Use 'edit &' to open it in the background while keeping the terminal usable.\n");
+                printf("5. 'edit' is part of GNOME and requires a graphical environment to run.\n");
+        	}
+            else gedit(tokens[1]);
         }
         else if (strcmp(command, "toupper") == 0) {
             if (argc1 != 2) {
                 printf("Usage: toupper <filename>\n");
                 continue;
             }
-            toupperFile(tokens[1]);
+            if (strcmp(tokens[1], "help") == 0){
+                printf("1. The 'toupper' functionality is used to convert all text in a file to uppercase.\n");
+                printf("2. Read the file specified by <filename>.\n");
+                printf("3. Convert each character to uppercase using the 'toupper()' function from ctype.h.\n");
+                printf("4. Save the result back to the file or to a new file.\n");
+                printf("5. Example: 'toupper input.txt' reads 'input.txt' and converts its contents to uppercase.\n");
+            }
+            else toupperFile(tokens[1]);
         } 
         else if (strcmp(command, "tolower") == 0) {
             if (argc1 != 2) {
                 printf("Usage: tolower <filename>\n");
                 continue;
             }
-            tolowerFile(tokens[1]);
+            if (strcmp(tokens[1], "help") == 0){
+                printf("1. The 'tolower' functionality is used to convert all text in a file to lowercase.\n");
+                printf("2. Read the file specified by <filename>.\n");
+                printf("3. Convert each character to lowercase using the 'tolower()' function from ctype.h.\n");
+                printf("4. Save the result back to the file or to a new file.\n");
+                printf("5. Example: 'tolower input.txt' reads 'input.txt' and converts its contents to lowercase.\n");
+            }
+            else tolowerFile(tokens[1]);
         } 
         else if (strcmp(command, "reverse") == 0) {
             if (argc1 != 2) {
                 printf("Usage: reverse <filename>\n");
                 continue;
             }
-            reverseFile(tokens[1]);
+            if (strcmp(tokens[1], "help") == 0){
+                printf("1. The 'reverse' functionality is used to reverse the content of a file.\n");
+                printf("2. Read the file specified by <filename> line by line or as a whole.\n");
+                printf("3. Reverse the text content (character-wise or line-wise) using appropriate logic.\n");
+                printf("4. Save the reversed content back to the file or to a new file.\n");
+                printf("5. Example: 'reverse input.txt' reads 'input.txt' and reverses its contents.\n");
+            }
+            else reverseFile(tokens[1]);
         } 
         else if (strcmp(command, "rmspaces") == 0) {
             if (argc1 != 2) {
                 printf("Usage: rmspaces <filename>\n");
                 continue;
             }
-            removeSpacesFile(tokens[1]);
+            if (strcmp(tokens[1], "help") == 0){
+                printf("1. The 'rmspaces' functionality is used to remove all spaces from a file's content.\n");
+                printf("2. Read the file specified by <filename> line by line.\n");
+                printf("3. Remove all spaces (' ') from each line using appropriate logic (e.g., skipping spaces).\n");
+                printf("4. Save the updated content back to the file or to a new file.\n");
+                printf("5. Example: 'rmspaces input.txt' processes 'input.txt' and removes all spaces from its content.\n");
+            }
+            else removeSpacesFile(tokens[1]);
         } 
         else if (strcmp(command, "countwords") == 0) {
             if (argc1 != 2) {
                 printf("Usage: countwords <filename>\n");
                 continue;
             }
-            countWordsFile(tokens[1]);
+            if (strcmp(tokens[1], "help") == 0){
+                printf("1. The 'countwords' functionality is used to count the total number of words in a file.\n");
+                printf("2. Read the file specified by <filename> line by line.\n");
+                printf("3. Split the content into words using spaces, tabs, or newline characters as delimiters.\n");
+                printf("4. Count each word and keep a running total.\n");
+                printf("5. Example: 'countwords input.txt' reads 'input.txt' and displays the total number of words.\n");
+            }
+            else countWordsFile(tokens[1]);
         } 
 
         // System information
         else if (strcmp(command, "systemstatus") == 0) {
-            displaySystemStatus();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'systemstatus' functionality provides an overview of the system's current state.\n");
+                printf("2. This includes information such as CPU usage, memory usage, disk space, and uptime.\n");
+                printf("3. Common commands for checking system status:\n");
+                printf("   - 'top': Displays real-time system performance.\n");
+                printf("   - 'free -h': Shows memory usage in human-readable format.\n");
+                printf("   - 'df -h': Displays disk space usage.\n");
+                printf("   - 'uptime': Shows how long the system has been running.\n");
+                printf("4. Example: Running 'systemstatus' could combine these commands to show a detailed summary.\n");
+                printf("5. This command helps monitor system health and troubleshoot performance issues.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: systemstatus\n");
+                continue;
+            }
+            else displaySystemStatus();
         } 
         else if (strcmp(command, "diskusage") == 0) {
-            displayDiskUsage();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'diskusage' functionality provides information about disk space usage on the system.\n");
+                printf("2. Common command: 'df' (disk free).\n");
+                printf("3. Syntax: 'df [options]'\n");
+                printf("   - 'df -h': Displays disk usage in human-readable format (e.g., GB, MB).\n");
+                printf("   - 'df -T': Shows disk usage along with filesystem types.\n");
+                printf("   - 'df -i': Displays inode usage.\n");
+                printf("4. Example: 'diskusage' could internally run 'df -h' to summarize available and used disk space.\n");
+                printf("5. Use this command to monitor and manage disk storage effectively.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: diskusage\n");
+                continue;
+            }
+            else displayDiskUsage();
         } 
         else if (strcmp(command, "networkinfo") == 0) {
-            displayNetworkInfo();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'networkinfo' functionality provides details about the network interfaces and their statuses.\n");
+                printf("2. Common commands to gather network information:\n");
+                printf("   - 'ifconfig' or 'ip a': Displays network interfaces and their IP addresses.\n");
+                printf("   - 'ping <hostname>': Checks connectivity to a host (e.g., 'ping google.com').\n");
+                printf("   - 'netstat -tuln': Lists active network connections and listening ports.\n");
+                printf("   - 'traceroute <hostname>': Traces the route packets take to a host.\n");
+                printf("   - 'nslookup <domain>': Resolves domain names to IP addresses.\n");
+                printf("3. Example: 'networkinfo' could internally run 'ifconfig' or 'ip a' to display current IP configurations.\n");
+                printf("4. Use this command to troubleshoot network issues or monitor connectivity.\n");
+                printf("5. Requires proper permissions or administrator privileges for some commands.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: networkinfo\n");
+                continue;
+            }
+            else displayNetworkInfo();
         } 
         else if (strcmp(command, "memoryusage") == 0) {
-            displayMemoryUsage();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'memoryusage' functionality provides details about the system's memory (RAM) usage.\n");
+                printf("2. Common commands to check memory usage:\n");
+                printf("   - 'free -h': Displays total, used, and available memory in human-readable format (e.g., GB, MB).\n");
+                printf("   - 'vmstat': Shows memory usage along with other system performance metrics.\n");
+                printf("   - 'top': Provides real-time memory and CPU usage for processes.\n");
+                printf("   - 'cat /proc/meminfo': Displays detailed memory information from the system file.\n");
+                printf("3. Example: 'memoryusage' could internally run 'free -h' to show an easy-to-read summary of memory usage.\n");
+                printf("4. Use this command to monitor available memory and troubleshoot system performance issues.\n");
+                printf("5. Requires no additional privileges to run these commands.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: memoryusage\n");
+                continue;
+            }
+            else displayMemoryUsage();
         } 
         else if (strcmp(command, "cpuinfo") == 0) {
-            displayCPUInfo();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'cpuinfo' functionality provides detailed information about the system's CPU.\n");
+                printf("2. Common commands to gather CPU information:\n");
+                printf("   - 'lscpu': Displays an overview of CPU architecture, cores, threads, and speed.\n");
+                printf("   - 'cat /proc/cpuinfo': Provides detailed information for each CPU core.\n");
+                printf("   - 'top' or 'htop': Shows real-time CPU usage and process information.\n");
+                printf("   - 'nproc': Displays the number of available processing units.\n");
+                printf("3. Example: 'cpuinfo' could internally execute 'lscpu' to summarize the CPU's specifications.\n");
+                printf("4. Use this command to monitor and understand the system's processor performance and capabilities.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: cpuinfo\n");
+                continue;
+            }
+            else displayCPUInfo();
         }
         else if (strcmp(command, "time") == 0) {
-            displaytime();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'time' functionality provides the current system time and date.\n");
+                printf("2. Common commands to get the current time:\n");
+                printf("   - 'date': Displays the current date and time in the system's timezone.\n");
+                printf("   - 'timedatectl': Provides detailed time settings, including timezone and synchronization status.\n");
+                printf("3. Syntax:\n");
+                printf("   - Running 'time' will display the current system time.\n");
+                printf("4. Example: 'time' could internally run the 'date' command to display the current time in HH:MM:SS format.\n");
+                printf("5. Use this command to check the current time or troubleshoot time-related configurations.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: time\n");
+                continue;
+            }
+            else displaytime();
         }
         else if (strcmp(command, "date") == 0) {
-            displaydate();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'date' functionality provides the current system date and time.\n");
+                printf("2. Common commands to get or set the date:\n");
+                printf("   - 'date': Displays the current date and time in the system's timezone.\n");
+                printf("   - 'date +\"%%Y-%%m-%%d\"': Shows the date in YYYY-MM-DD format.\n");
+                printf("   - 'date +\"%%T\"': Displays only the current time (HH:MM:SS).\n");
+                printf("3. To set the date (requires admin privileges):\n");
+                printf("   - Syntax: 'date MMDDhhmmYYYY.ss'\n");
+                printf("   - Example: 'date 012312452025.00' sets the date to January 23, 2025, 12:45:00.\n");
+                printf("4. Example: Running 'date' will display the full current date and time.\n");
+                printf("5. Use this command to check the system's current date or adjust it if needed.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: date\n");
+                continue;
+            }
+            else displaydate();
         }
 
         // System maintenance
         else if (strcmp(command, "reboot") == 0) {
-            rebootSystem();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'reboot' command is used to restart the system.\n");
+                printf("2. Common scenarios for using 'reboot':\n");
+                printf("   - To apply system updates.\n");
+                printf("   - To resolve system performance issues.\n");
+                printf("   - To restart after changes in hardware or software configurations.\n");
+                printf("3. Requires superuser privileges to execute (e.g., 'sudo reboot').\n");
+                printf("4. Example: Simply typing 'reboot' will initiate a restart of the system.\n");
+                printf("5. Warning: Always ensure unsaved work is saved before using this command.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: reboot\n");
+                continue;
+            }
+            else rebootSystem();
         } 
         else if (strcmp(command, "shutdown") == 0) {
-            shutdownSystem();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'shutdown' command is used to power off or restart the system safely.\n");
+                printf("2. Common options for 'shutdown':\n");
+                printf("   - 'shutdown now': Immediately powers off the system.\n");
+                printf("   - 'shutdown -h <time>': Schedules a system halt at the specified time (e.g., 'shutdown -h +10' shuts down in 10 minutes).\n");
+                printf("   - 'shutdown -r': Reboots the system instead of powering it off.\n");
+                printf("3. Requires superuser privileges to execute (e.g., 'sudo shutdown').\n");
+                printf("4. Example: Running 'shutdown -h now' will turn off the system immediately.\n");
+                printf("5. Warning: Always ensure unsaved work is saved before using this command.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: shutdown\n");
+                continue;
+            }
+            else shutdownSystem();
         } 
         else if (strcmp(command, "update") == 0) {
-            updateSystem();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'update' functionality is typically used to update the system's package list and software packages.\n");
+                printf("2. Common commands for updating software packages:\n");
+                printf("   - 'sudo apt update': Updates the list of available packages (for Debian-based systems like Ubuntu).\n");
+                printf("   - 'sudo apt upgrade': Upgrades installed packages to their latest versions.\n");
+                printf("   - 'sudo dnf update': Updates all packages on Red Hat-based systems.\n");
+                printf("   - 'sudo pacman -Syu': Updates the system on Arch Linux.\n");
+                printf("3. Running 'update' alone may refer to updating the package list or the entire system, depending on the distribution.\n");
+                printf("4. Example: 'sudo apt update' fetches the latest package information from configured repositories.\n");
+                printf("5. It's important to update regularly to ensure security patches and improvements are applied.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: update\n");
+                continue;
+            }
+            else updateSystem();
         } 
         else if (strcmp(command, "clean") == 0) {
-            cleanSystem();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'clean' functionality is typically used to remove unnecessary package files and free up disk space.\n");
+                printf("2. Common commands for cleaning up package files:\n");
+                printf("   - 'sudo apt clean': Removes downloaded package files that are no longer needed (for Debian-based systems like Ubuntu).\n");
+                printf("   - 'sudo apt autoremove': Removes unused packages and dependencies that are no longer needed.\n");
+                printf("   - 'sudo dnf clean all': Cleans up cached package data on Red Hat-based systems.\n");
+                printf("   - 'sudo pacman -Rns $(pacman -Qdtq)': Removes unused packages and their dependencies on Arch Linux.\n");
+                printf("3. Running 'clean' can help free up space by removing cached and unnecessary files.\n");
+                printf("4. Example: 'sudo apt clean' will remove the local cache of downloaded packages.\n");
+                printf("5. It's recommended to clean periodically to maintain disk space and system performance.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: clean\n");
+                continue;
+            }
+            else cleanSystem();
         } 
 
         // Utilities
         else if (strcmp(command, "clear") == 0) {
-            clearScreen();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'clear' command is used to clear the terminal screen.\n");
+                printf("2. It removes all previous text and outputs, providing a clean workspace in the terminal.\n");
+                printf("3. This command does not delete any data, it simply scrolls the terminal display.\n");
+                printf("4. Example: Running 'clear' will instantly clear all text from the terminal window.\n");
+                printf("5. The 'clear' command can be used frequently to maintain a tidy terminal window during long sessions.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: clear\n");
+                continue;
+            }
+            else clearScreen();
         }
 
         // Exit the program
         else if (strcmp(command, "exit") == 0) {
-            exit(0);  // Exit the program
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'exit' command is used to terminate a shell session or program.\n");
+                printf("2. It closes the current terminal window or logs the user out of a session.\n");
+                printf("3. The 'exit' command can also take an optional exit status code, where '0' generally indicates success and non-zero values indicate errors.\n");
+                printf("   - Syntax: 'exit [status]'\n");
+                printf("4. Example: Running 'exit' will close the terminal session, or 'exit 1' will terminate with an error status.\n");
+                printf("5. The 'exit' command is commonly used in scripts to end execution or after completing tasks in the shell.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: exit\n");
+                continue;
+            }
+            else exit(0);  // Exit the program
         }
 
         // Games
         else if (strcmp(command, "guessnumber") == 0) {
-            guessNumberGame();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'guessnumber' functionality is a game or program where the user is prompted to guess a number within a specified range.\n");
+                printf("2. Common implementation includes the following steps:\n");
+                printf("   - The system randomly selects a number.\n");
+                printf("   - The user is asked to input guesses.\n");
+                printf("   - After each guess, the system informs the user whether the guess was too high, too low, or correct.\n");
+                printf("3. Syntax:\n");
+                printf("   - A common format for the command could be: 'guessnumber [min] [max]'\n");
+                printf("   - Example: 'guessnumber 1 100' would prompt the user to guess a number between 1 and 100.\n");
+                printf("4. Example: If the system selects 42, the user would input guesses, and after each guess, the system gives feedback.\n");
+                printf("5. This command is often used for simple game implementations or as a practice for input validation and loops in programming.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: guessnumber\n");
+                continue;
+            }
+            else guessNumberGame();
         } 
         else if (strcmp(command, "rockpaperscissors") == 0) {
-            rockPaperScissorsGame();
+            if (tokens[1] && strcmp(tokens[1], "help") == 0){
+        		printf("1. The 'rockpaperscissors' functionality implements the classic game between two players: one choosing Rock, Paper, or Scissors.\n");
+                printf("2. Common rules of the game:\n");
+                printf("   - Rock beats Scissors.\n");
+                printf("   - Scissors beat Paper.\n");
+                printf("   - Paper beats Rock.\n");
+                printf("3. The game can be played between two users or with the computer generating a random choice.\n");
+                printf("4. Example:\n");
+                printf("   - Player 1 selects Rock and the computer selects Scissors. Player 1 wins.\n");
+                printf("   - Player 2 selects Paper and Player 1 selects Rock. Player 2 wins.\n");
+                printf("5. The 'rockpaperscissors' game is a great exercise for learning about conditionals, loops, and user input in programming.\n");
+        	}
+            else if (argc1 != 1) {
+                printf("Usage: rockpaperscissors\n");
+                continue;
+            }
+            else rockPaperScissorsGame();
         }
 
         // Invalid command
