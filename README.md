@@ -154,7 +154,15 @@ To use the command-line utility provided by the source code, follow these instru
 
      Example: `help`
 
-  
+- **<command> help:** The system will display a help message for the command:
+
+     ```
+
+      <command> help
+
+     ```
+
+     Example: `<command> help`
 
 1. **File Operations:** 
 
