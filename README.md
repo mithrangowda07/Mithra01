@@ -154,7 +154,7 @@ To use the command-line utility provided by the source code, follow these instru
 
      Example: `help`
 
-  - **Command Help:** The system will display a help message for the command:
+    - **Command Help:** The system will display a help message for the command:
   
        ```
   
